@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "metabuildcity_backend": {
+      "main": "src/metabuildcity_backend/main.mo",
+      "type": "motoko"
+    },
+    "metabuildcity_frontend": {
+      "dependencies": [
+        "metabuildcity_backend"
+      ],
+      "source": [
+        "src/metabuildcity_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "metabuildcity_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
