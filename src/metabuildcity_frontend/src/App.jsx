@@ -1,31 +1,14 @@
-import { useState } from 'react';
-import { metabuildcity_backend } from 'declarations/metabuildcity_backend';
+import React from 'react';
+import { Unity, useUnityContext } from 'react-unity-webgl';
 
 function App() {
-  const [greeting, setGreeting] = useState('');
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    metabuildcity_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
-  }
-
-  return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
-  );
+  const { unityProvider } = useUnityContext({
+    loaderUrl: 'Build/webgl_export.loader.js',
+    dataUrl: 'Build/webgl_export.data',
+    frameworkUrl: 'Build/webgl_export.framework.js',
+    codeUrl: 'Build/webgl_export.wasm',
+  });
+  return <Unity unityProvider={unityProvider} />;
 }
 
 export default App;
