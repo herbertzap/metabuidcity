@@ -9,6 +9,7 @@ yarn-error.log*
 # Directorios de producción
 dist/
 build/
+declarations/
 
 # Archivos de entorno
 .env
@@ -16,6 +17,7 @@ build/
 # Archivos de configuración del editor
 .vscode/
 .idea/
+.dfx/
 
 # Archivos del sistema operativo
 .DS_Store

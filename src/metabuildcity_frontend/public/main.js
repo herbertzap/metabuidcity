@@ -1,3 +1,8 @@
+// Deshabilitar acceso a gamepads para evitar errores de permisos
+if (navigator.getGamepads) {
+  navigator.getGamepads = () => [];
+}
+
 var container = document.querySelector("#unity-container");
 var canvas = document.querySelector("#unity-canvas");
 var loadingBar = document.querySelector("#unity-loading-bar");
@@ -30,19 +35,19 @@ function unityShowBanner(msg, type) {
 }
 
 var buildUrl = "Build";
-var loaderUrl = buildUrl + "/webgl_export.loader.js";
+var loaderUrl = buildUrl + "/mbf_webgl.loader.js";
 var config = {
-  dataUrl: buildUrl + "/webgl_export.data",
-  frameworkUrl: buildUrl + "/webgl_export.framework.js",
-  codeUrl: buildUrl + "/webgl_export.wasm",
+  dataUrl: buildUrl + "/mbf_webgl.data",
+  frameworkUrl: buildUrl + "/mbf_webgl.framework.js",
+  codeUrl: buildUrl + "/mbf_webgl.wasm",
   streamingAssetsUrl: "StreamingAssets",
   companyName: "DefaultCompany",
-  productName: "Meabuild Fair",
-  productVersion: "0.1.0",
+  productName: "MBF",
+  productVersion: "1.0",
   showBanner: unityShowBanner,
 };
 
-// By default, Unity keeps WebGL canvas render target size matched with
+// By default Unity keeps WebGL canvas render target size matched with
 // the DOM size of the canvas element (scaled by window.devicePixelRatio)
 // Set this to false if you want to decouple this synchronization from
 // happening inside the engine, and you would instead like to size up
@@ -66,12 +71,9 @@ if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
 
 } else {
   // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-  if (canvas) {
-    canvas.style.width = "960px";
-    canvas.style.height = "600px";
-  } else {
-    console.error("El elemento #unity-canvas no se encontró en el DOM.");
-  }
+
+  canvas.style.width = "960px";
+  canvas.style.height = "600px";
 }
 
 loadingBar.style.display = "block";
@@ -92,8 +94,3 @@ script.onload = () => {
       };
 
 document.body.appendChild(script);
-
-
-
-
-

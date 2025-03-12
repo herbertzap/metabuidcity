@@ -1,17 +1,17 @@
 [
   {
-    "match": "**/*",
-    "security_policy": "standard",
-    "disable_security_policy_warning": true,
-    "headers": {
-      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-eval'; connect-src 'self' wss://ns.photonengine.io https://*.exitgames.com; img-src 'self' data:; style-src 'self' 'unsafe-inline';",
-      "Permissions-Policy": "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=(), clipboard-read=(), clipboard-write=(self), gamepad=(), speaker-selection=(), conversion-measurement=(), focus-without-user-activation=(), hid=(), idle-detection=(), interest-cohort=(), serial=(), sync-script=(), trust-token-redemption=(), window-placement=(), vertical-scroll=()",
-      "X-Frame-Options": "DENY",
-      "Referrer-Policy": "same-origin",
-      "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
-      "X-Content-Type-Options": "nosniff",
-      "X-XSS-Protection": "1; mode=block"
-    },
-    "allow_raw_access": false
-  }
+  "match": "**/*",
+  "security_policy": "standard",
+  "disable_security_policy_warning": true,
+  "headers": {
+    "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-eval' https://*.ic0.app; connect-src 'self' wss://ns.photonengine.io https://*.exitgames.com; img-src 'self' data: blob:;  style-src 'self' 'unsafe-inline';worker-src 'self' blob:; media-src 'self' blob:;",
+    "Permissions-Policy": "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=(), clipboard-read=(), clipboard-write=(self), gamepad=(), speaker-selection=(), conversion-measurement=(), focus-without-user-activation=(), hid=(), idle-detection=(), interest-cohort=(), serial=(), sync-script=(), trust-token-redemption=(), window-placement=(), vertical-scroll=()",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "same-origin",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+    "X-Content-Type-Options": "nosniff",
+    "X-XSS-Protection": "1; mode=block"
+  },
+  "allow_raw_access": false
+}
 ]

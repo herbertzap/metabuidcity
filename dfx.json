@@ -5,9 +5,6 @@
       "type": "motoko"
     },
     "metabuildcity_frontend": {
-      "dependencies": [
-        "metabuildcity_backend"
-      ],
       "source": [
         "src/metabuildcity_frontend/dist"
       ],
