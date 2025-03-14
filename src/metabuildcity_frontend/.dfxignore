@@ -1,0 +1,16 @@
+webgl/Build/
+webgl/TemplateData/
+
+public/webgl/Build/*
+public/webgl/Build/*.js
+public/webgl/Build/*.js.map
+public/webgl/Build/*.wasm
+public/webgl/Build/*.data
+public/webgl/Build/*.framework.js
+
+/webgl/Build/*
+/webgl/Build/*.js
+/webgl/Build/*.js.map
+/webgl/Build/*.wasm
+/webgl/Build/*.data
+/webgl/Build/*.framework.js

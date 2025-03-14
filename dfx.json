@@ -2,20 +2,29 @@
   "canisters": {
     "metabuildcity_backend": {
       "main": "src/metabuildcity_backend/main.mo",
-      "type": "motoko"
+      "type": "motoko",
+      "memory_allocation": 1073741824,
+      "compute_allocation": 20
     },
     "metabuildcity_frontend": {
       "source": [
         "src/metabuildcity_frontend/dist"
       ],
       "type": "assets",
+      "memory_allocation": 3221225472,
+      "compute_allocation": 50,
+      "initialization_values": {
+          "memory_allocation": "4GB"
+      },
+      
       "workspace": "metabuildcity_frontend"
     }
   },
   "defaults": {
     "build": {
       "args": "",
-      "packtool": ""
+      "packtool": "",
+      "asset_storage_mode": "individual"
     }
   },
   "output_env_file": ".env",

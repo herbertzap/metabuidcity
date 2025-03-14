@@ -1,0 +1,26 @@
+.unity-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background-color: black; // Fondo negro para mejor visualización
+  
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+  
+  // Opcional: Añadir un loader mientras Unity carga
+  .unity-loader {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+  }
+  

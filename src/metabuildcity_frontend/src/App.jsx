@@ -1,15 +1,19 @@
-
-import React from 'react';
-import { Unity, useUnityContext } from 'react-unity-webgl';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NavigationBar from "./components/NavigationBar";
+import Home from "./pages/Home";
+import UnityApp from "./pages/UnityApp";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const { unityProvider } = useUnityContext({
-    loaderUrl: 'Build/webgl_export.loader.js',
-    dataUrl: 'Build/webgl_export.data',
-    frameworkUrl: 'Build/webgl_export.framework.js',
-    codeUrl: 'Build/webgl_export.wasm',
-  });
-  return <Unity unityProvider={unityProvider} />;
+  return (
+    <Router>
+      <NavigationBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/webgl" element={<UnityApp />} />
+        </Routes>
+    </Router>
+  );
 }
 
-export default App; 
+export default App;
