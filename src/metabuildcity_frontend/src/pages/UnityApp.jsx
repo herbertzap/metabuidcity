@@ -30,12 +30,12 @@ const UnityApp = () => {
       return;
     }
 
-    script.src = "/webgl/Build/mbf_webgl.loader.js"; // Nueva ruta a WebGL
+    script.src = "/webgl/Build/mbf_webgl_gzip.loader.js"; // Nueva ruta a WebGL
     script.onload = () => {
       createUnityInstance(unityCanvas, {
-        dataUrl: "/webgl/Build/mbf_webgl.data.gz",
-        frameworkUrl: "/webgl/Build/mbf_webgl.framework.js.gz",
-        codeUrl: "/webgl/Build/mbf_webgl.wasm.gz",
+        dataUrl: "/webgl/Build/mbf_webgl_gzip.data.gz",
+        frameworkUrl: "/webgl/Build/mbf_webgl_gzip.framework.js.gz",
+        codeUrl: "/webgl/Build/mbf_webgl_gzip.wasm.gz",
         streamingAssetsUrl: "/webgl/StreamingAssets",
         companyName: "DefaultCompany",
         productName: "MBF",
