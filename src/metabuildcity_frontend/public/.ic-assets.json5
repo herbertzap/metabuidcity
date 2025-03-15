@@ -78,11 +78,7 @@
             // See: https://owasp.org/www-community/attacks/xss/
             "X-XSS-Protection": "1; mode=block",
 
-            "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.youtube.com https://www.youtube-nocookie.com https://www.youtube.com/iframe_api; connect-src 'self' https://ic0.app https://*.ic0.app data:; img-src 'self' data: blob:; style-src * 'unsafe-inline'; style-src-elem * 'unsafe-inline'; font-src *; object-src 'none'; base-uri 'self'; frame-src https://www.youtube.com https://www.youtube-nocookie.com; form-action 'self'; upgrade-insecure-requests;",
-
-             "Content-Encoding": "br",
-             "Content-Type": "application/wasm" // Asegúrate de que esto sea correcto según el archivo
-             
+            "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.youtube.com https://www.youtube-nocookie.com https://www.youtube.com/iframe_api; connect-src 'self' https://ic0.app https://*.ic0.app data:; img-src 'self' data: blob:; style-src * 'unsafe-inline'; style-src-elem * 'unsafe-inline'; font-src *; object-src 'none'; base-uri 'self'; frame-src https://www.youtube.com https://www.youtube-nocookie.com; form-action 'self'; upgrade-insecure-requests;"
 
 
         }
