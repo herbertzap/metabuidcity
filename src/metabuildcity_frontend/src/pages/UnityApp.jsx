@@ -33,9 +33,9 @@ const UnityApp = () => {
     script.src = "/webgl/Build/mbf_webgl.loader.js"; // Nueva ruta a WebGL
     script.onload = () => {
       createUnityInstance(unityCanvas, {
-        dataUrl: "/webgl/Build/mbf_webgl.data",
-        frameworkUrl: "/webgl/Build/mbf_webgl.framework.js",
-        codeUrl: "/webgl/Build/mbf_webgl.wasm",
+        dataUrl: "/webgl/Build/mbf_webgl.data.gz",
+        frameworkUrl: "/webgl/Build/mbf_webgl.framework.js.gz",
+        codeUrl: "/webgl/Build/mbf_webgl.wasm.gz",
         streamingAssetsUrl: "/webgl/StreamingAssets",
         companyName: "DefaultCompany",
         productName: "MBF",
