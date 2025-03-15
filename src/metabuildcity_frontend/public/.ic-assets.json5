@@ -5,7 +5,7 @@
       "Content-Encoding": "gzip",
       "Content-Type": "application/wasm"
     }
-  }
+  },
   {
     "match": "**/*.wasm.gz",
     "headers": {
