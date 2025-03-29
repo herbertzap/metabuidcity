@@ -3,6 +3,10 @@ import { Carousel, Container } from "react-bootstrap";
 import ReactPlayer from "react-player";
 import HexGrid from "../components/HexGrid";
 import ContactForm from "../components/ContactForm";
+import BusinessModel from "../components/BusinessModel";
+import TapaCarousel from "../components/TapaCarousel";
+import TextSuperiorHexgrid from "../components/Text-superior-hexgrid";
+
 
 function Home() {
   return (
@@ -32,9 +36,17 @@ function Home() {
               },
             }}
           />
-      </div>
+          </div>
         </Carousel.Item>
       </Carousel>
+      
+      <TapaCarousel />
+
+
+
+      <BusinessModel />
+
+      <TextSuperiorHexgrid />
       <section id="hexSection">
         <HexGrid />
       </section>

@@ -1,0 +1,23 @@
+.Business-container{
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+
+    .conte-h5 {
+        width: 100%;
+        float: left;
+    }
+    .valor {
+        width: max-content;
+        margin: 0 auto;
+    }
+    .border-30{
+        border-radius: 40px;
+    }
+
+    .border-image {
+        border: 1px solid #fff;
+    }
+    
+    img{
+        min-height: 300px;
+    }
+}

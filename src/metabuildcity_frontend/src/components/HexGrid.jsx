@@ -72,7 +72,7 @@ const HexGrid = () => {
   return (
     <div className="container hxcontainer">
       <div id="hexContainer">
-<svg width="500" height="500" viewBox="0 0 500 500">
+<svg width="500" height="600" viewBox="0 50 500 500">
     <defs>
         <clipPath id="hexMask">
             <polygon points="250,20 470,140 470,360 250,480 30,360 30,140" />

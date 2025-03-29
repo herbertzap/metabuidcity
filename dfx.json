@@ -33,7 +33,14 @@
     {
       "pattern": "\\.wasm\\.gz$",
       "headers": { "Content-Encoding": "gzip", "Content-Type": "application/wasm" }
-    }],
+    },
+    {
+      "pattern": ".*",
+      "headers": {
+        "Content-Security-Policy": "default-src 'self' https: data: blob:; connect-src 'self' https://explorer-api.walletconnect.com https://*.walletconnect.com https://ic0.app https://*.ic0.app data:; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;"
+      }
+    }
+  ],
       "workspace": "metabuildcity_frontend"
     }
   },

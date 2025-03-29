@@ -18,6 +18,10 @@ export default defineConfig({
     host: "0.0.0.0",  // Permite acceso en redes locales
     port: 5173, // Puerto por defecto de Vite
     strictPort: true, // Evita cambiar el puerto si está ocupado
+    headers: {
+      "Content-Security-Policy":
+        "default-src 'self'; connect-src 'self' http://localhost:4943 https://ic0.app https://*.ic0.app data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",   
+    },
     proxy: {
       "/api": {
         target: "http://127.0.0.1:4943",
