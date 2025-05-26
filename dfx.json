@@ -12,36 +12,100 @@
       ],
       "type": "assets",
       "gzip": true,
-      "memory_allocation": 3221225472,
-      "compute_allocation": 50,
-      "initialization_values": {
-          "memory_allocation": "4GB"
-      },
       "headers": [
-    {
-      "pattern": "\\.data\\.gz$",
-      "headers": { "Content-Encoding": "gzip", "Content-Type": "application/octet-stream" }
-    },
-    {
-      "pattern": "\\.framework\\.js\\.gz$",
-      "headers": { "Content-Encoding": "gzip", "Content-Type": "application/javascript" }
-    },
-    {
-      "pattern": "\\.loader\\.js$",
-      "headers": { "Content-Type": "application/javascript" }
-    },
-    {
-      "pattern": "\\.wasm\\.gz$",
-      "headers": { "Content-Encoding": "gzip", "Content-Type": "application/wasm" }
-    },
-    {
-      "pattern": ".*",
-      "headers": {
-        "Content-Security-Policy": "default-src 'self' https: data: blob:; connect-src 'self' https://explorer-api.walletconnect.com https://*.walletconnect.com https://ic0.app https://*.ic0.app data:; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;"
-      }
-    }
-  ],
+        {
+          "pattern": "\\.data\\.gz$",
+          "headers": {
+            "Content-Encoding": "gzip",
+            "Content-Type": "application/octet-stream"
+          }
+        },
+        {
+          "pattern": "\\.framework\\.js\\.gz$",
+          "headers": {
+            "Content-Encoding": "gzip",
+            "Content-Type": "application/javascript"
+          }
+        },
+        {
+          "pattern": "\\.loader\\.js$",
+          "headers": {
+            "Content-Type": "application/javascript"
+          }
+        },
+        {
+          "pattern": "\\.wasm\\.gz$",
+          "headers": {
+            "Content-Encoding": "gzip",
+            "Content-Type": "application/wasm"
+          }
+        },
+        {
+          "pattern": ".*",
+          "headers": {
+            "Content-Security-Policy": "default-src 'self' https: data: blob:; connect-src 'self' https://explorer-api.walletconnect.com https://*.walletconnect.com https://ic0.app https://*.ic0.app data:; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;"
+          }
+        }
+      ],
+      "dependencies": [
+        "metabuildcity_backend"
+      ],
+      "build": [
+        "npm install",
+        "npm run build"
+      ],
       "workspace": "metabuildcity_frontend"
+    },
+    "metabuildcity_webgl": {
+      "source": [
+        "src/metabuildcity_webgl/dist"
+      ],
+      "type": "assets",
+      "candid": "candid/assetstorage.did",
+      "gzip": true,
+      "headers": [ 
+        {
+          "pattern": "\\.data\\.gz$",
+          "headers": {
+            "Content-Encoding": "gzip",
+            "Content-Type": "application/octet-stream"
+          }
+        },
+        {
+          "pattern": "\\.framework\\.js\\.gz$",
+          "headers": {
+            "Content-Encoding": "gzip",
+            "Content-Type": "application/javascript"
+          }
+        },
+        {
+          "pattern": "\\.loader\\.js$",
+          "headers": {
+            "Content-Type": "application/javascript"
+          }
+        },
+        {
+          "pattern": "\\.wasm\\.gz$",
+          "headers": {
+            "Content-Encoding": "gzip",
+            "Content-Type": "application/wasm"
+          }
+        },
+        {
+          "pattern": ".*",
+          "headers": {
+            "Content-Security-Policy": "default-src 'self' https: data: blob:; connect-src 'self' https://explorer-api.walletconnect.com https://*.walletconnect.com https://ic0.app https://*.ic0.app data:; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;"
+          }
+        }
+      ],
+      "dependencies": [
+        "metabuildcity_backend"
+      ],
+      "build": [
+        "npm install",
+        "npm run build"
+      ],
+      "workspace": "metabuildcity_webgl"
     }
   },
   "defaults": {
