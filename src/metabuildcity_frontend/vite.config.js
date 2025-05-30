@@ -12,7 +12,6 @@ export default defineConfig({
   build: {
     emptyOutDir: true,
     sourcemap: true, // Agrega mapas de fuente para depuración
-    assetsDir: "webgl/Build", // Asegura que reconozca los archivos en public/webgl/
   },
   server: {
     host: "0.0.0.0",  // Permite acceso en redes locales

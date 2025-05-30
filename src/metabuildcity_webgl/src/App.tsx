@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const principal = urlParams.get("principal");
+
+    if (principal) {
+      localStorage.setItem("user_principal", principal);
+      console.log("🔐 Principal recibido:", principal);
+    } else {
+      console.warn("⚠️ No se recibió principal. ¿Acceso directo?");
+    }
+
+    const canvas = document.getElementById("unity-canvas") as HTMLCanvasElement | null;
+    if (!canvas) {
+      console.error("🎥 Canvas no encontrado");
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "/Build/game.loader.js";
+    script.onload = () => {
+      // @ts-ignore: Unity loader global
+      createUnityInstance(canvas, {
+        dataUrl: "/Build/game.data",
+        frameworkUrl: "/Build/game.framework.js",
+        codeUrl: "/Build/game.wasm",
+      }).catch((e: unknown) => console.error("❌ Error al iniciar Unity:", e));
+    };
+
+    document.body.appendChild(script);
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div style={{ width: "100%", height: "100vh", backgroundColor: "#000" }}>
+      <canvas id="unity-canvas" style={{ width: "100%", height: "100%" }}></canvas>
+    </div>
+  );
 }
 
-export default App
+export default App;
