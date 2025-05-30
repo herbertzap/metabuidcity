@@ -19,13 +19,13 @@ function App() {
     }
 
     const script = document.createElement("script");
-    script.src = "/Build/game.loader.js";
+    script.src = "/Build/mbf_webgl_gzip.loader.js";
     script.onload = () => {
       // @ts-ignore: Unity loader global
       createUnityInstance(canvas, {
-        dataUrl: "/Build/game.data",
-        frameworkUrl: "/Build/game.framework.js",
-        codeUrl: "/Build/game.wasm",
+        dataUrl: "/Build/mbf_webgl_gzip.data.gz",
+        frameworkUrl: "/Build/mbf_webgl_gzip.framework.js.gz",
+        codeUrl: "/Build/mbf_webgl_gzip.wasm.gz",
       }).catch((e: unknown) => console.error("❌ Error al iniciar Unity:", e));
     };
 
