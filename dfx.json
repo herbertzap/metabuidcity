@@ -13,15 +13,17 @@
       "type": "assets",
       "gzip": true,
       "headers": [
-        {
-          "pattern": ".*",
-          "headers": {
-            "Content-Security-Policy": "default-src 'self' https: data: blob:; connect-src 'self' https://explorer-api.walletconnect.com https://*.walletconnect.com https://ic0.app https://*.ic0.app data:; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;"
+  {
+    "pattern": ".*",
+    "headers": {
+     "Content-Security-Policy": "default-src 'self' https: data: blob:; connect-src 'self' https://ic0.app https://*.ic0.app https://icp0.io https://*.icp0.io https://explorer-api.walletconnect.com https://*.walletconnect.com data:; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;"
+      
           }
         }
       ],
       "dependencies": [
-        "metabuildcity_backend"
+        "metabuildcity_backend",
+        "metabuildcity_nft"
       ],
       "build": [
         "npm install",
@@ -67,7 +69,7 @@
         {
           "pattern": ".*",
           "headers": {
-            "Content-Security-Policy": "default-src 'self' https: data: blob:; connect-src 'self' https://explorer-api.walletconnect.com https://*.walletconnect.com https://ic0.app https://*.ic0.app data:; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;"
+            "Content-Security-Policy": "default-src 'self';script-src 'self';connect-src 'self' http://localhost:* https://icp0.io https://*.icp0.io https://icp-api.io;img-src 'self' data:;style-src * 'unsafe-inline';style-src-elem * 'unsafe-inline';font-src *;object-src 'none';base-uri 'self';frame-ancestors 'none';form-action 'self';upgrade-insecure-requests;"
           }
         }
       ],
@@ -79,6 +81,10 @@
         "npm run build"
       ],
       "workspace": "metabuildcity_webgl"
+    },
+    "metabuildcity_nft": {
+    "type": "motoko",
+    "main": "src/metabuildcity_nft/main.mo"
     }
   },
   "defaults": {

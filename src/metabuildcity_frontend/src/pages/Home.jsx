@@ -6,6 +6,7 @@ import ContactForm from "../components/ContactForm";
 import BusinessModel from "../components/BusinessModel";
 import TapaCarousel from "../components/TapaCarousel";
 import TextSuperiorHexgrid from "../components/Text-superior-hexgrid";
+import CreateVirtualFair from "../components/CreateVirtualFair";
 
 
 function Home() {
@@ -25,10 +26,9 @@ function Home() {
         
       </Carousel>
       
-      
-<TapaCarousel />
+      <TapaCarousel />
 
-
+      <CreateVirtualFair />
       <BusinessModel />
 
       <TextSuperiorHexgrid />

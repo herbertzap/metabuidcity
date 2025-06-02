@@ -1,0 +1,23 @@
+.marketplace {
+  padding: 2rem;
+  color: white;
+  background: #111;
+
+  .nft-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .nft-card {
+    background: #222;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #000;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+}

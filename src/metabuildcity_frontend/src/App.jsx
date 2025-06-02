@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
+import Marketplace from "./pages/Marketplace";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Suspense, lazy } from "react";
 
@@ -13,6 +14,7 @@ function App() {
       <Suspense fallback={<div className="text-center mt-5 text-light">Cargando vista...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/marketplace" element={<Marketplace />} />
 
         </Routes>
       </Suspense>
