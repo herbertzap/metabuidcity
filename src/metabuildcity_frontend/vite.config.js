@@ -12,15 +12,13 @@ export default defineConfig({
   build: {
     emptyOutDir: true,
     sourcemap: true, // Agrega mapas de fuente para depuración
-    assetsDir: "webgl/Build", // Asegura que reconozca los archivos en public/webgl/
   },
   server: {
     host: "0.0.0.0",  // Permite acceso en redes locales
     port: 5173, // Puerto por defecto de Vite
     strictPort: true, // Evita cambiar el puerto si está ocupado
     headers: {
-      "Content-Security-Policy":
-        "default-src 'self'; connect-src 'self' http://localhost:4943 https://ic0.app https://*.ic0.app data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",   
+      "Content-Security-Policy": "default-src 'self'; connect-src 'self' http://localhost:4943 https://icp0.io https://explorer-api.walletconnect.com; img-src 'self' data:; font-src 'self' data:; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
     },
     proxy: {
       "/api": {

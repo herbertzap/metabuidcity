@@ -1,0 +1,67 @@
+.create-virtual-fair {
+  color: #fff;
+  padding: 3rem;
+  background: #0c0c1e;
+  border-radius: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+
+  h2 {
+    text-align: center;
+    color: #6cd4ff;
+    margin-bottom: 2rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-weight: 500;
+        margin-bottom: 0.3rem;
+      }
+
+      input,
+      select {
+        padding: 0.8rem;
+        border: none;
+        border-radius: 0.5rem;
+        background-color: #1d1f30;
+        color: #fff;
+      }
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .upload-group {
+      input {
+        border: 1px dashed #6cd4ff;
+        background-color: transparent;
+        cursor: pointer;
+      }
+    }
+
+    .mint-btn {
+      background: #6cd4ff;
+      color: #000;
+      font-weight: bold;
+      padding: 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.3s;
+
+      &:hover {
+        background: #4ab8d9;
+      }
+    }
+  }
+}

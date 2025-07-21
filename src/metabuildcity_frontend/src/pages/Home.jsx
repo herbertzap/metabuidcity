@@ -6,6 +6,7 @@ import ContactForm from "../components/ContactForm";
 import BusinessModel from "../components/BusinessModel";
 import TapaCarousel from "../components/TapaCarousel";
 import TextSuperiorHexgrid from "../components/Text-superior-hexgrid";
+import CreateVirtualFair from "../components/CreateVirtualFair";
 
 
 function Home() {
@@ -16,34 +17,18 @@ function Home() {
         <Carousel.Item>
           {/* Slide con Video */}
           <div className="video-slide">
-          <ReactPlayer
-            url="https://www.youtube.com/embed/q1dXMtnffOc?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1"
-            playing
-            loop
-            width="100%"
-            height="100%"
-            config={{
-              youtube: {
-                playerVars: {
-                  autoplay: 1,
-                  mute: 1,
-                  controls: 0,
-                  showinfo: 0,
-                  modestbranding: 1,
-                  rel: 0,
-                  playsinline: 1,
-                },
-              },
-            }}
-          />
+          <video autoPlay muted loop playsInline preload="auto" style={{ width: "100%", height: "100%", objectFit: "cover" }}>
+          <source src="/assets/video/video_home.mp4" type="video/mp4" />
+      Tu navegador no soporta el video HTML5.
+    </video>
           </div>
         </Carousel.Item>
+        
       </Carousel>
       
       <TapaCarousel />
 
-
-
+      <CreateVirtualFair />
       <BusinessModel />
 
       <TextSuperiorHexgrid />

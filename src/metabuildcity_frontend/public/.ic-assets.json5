@@ -30,7 +30,7 @@
   {
     "match": "**/*",
     "headers": {
-      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.youtube.com https://www.youtube-nocookie.com https://cdn.rainbow.me; connect-src 'self' https://ic0.app https://*.ic0.app https://relay.walletconnect.org wss://relay.walletconnect.org; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; object-src 'self'; media-src 'self' https://www.youtube.com https://www.youtube-nocookie.com;",
+      "Content-Security-Policy": "default-src 'self'; connect-src 'self' http://localhost:4943 http://localhost:* https://icp0.io https://*.icp0.io https://ic0.app https://*.ic0.app https://explorer-api.walletconnect.com wss://relay.walletconnect.org; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.youtube.com https://www.youtube-nocookie.com https://cdn.rainbow.me; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; object-src 'self'; media-src 'self' https://www.youtube.com https://www.youtube-nocookie.com;",
       "Permissions-Policy": "gamepad=*, accelerometer=(), ambient-light-sensor=(), autoplay=(), camera=(), cross-origin-isolated=(), encrypted-media=()",
       "X-Frame-Options": "DENY",
       "Referrer-Policy": "same-origin",

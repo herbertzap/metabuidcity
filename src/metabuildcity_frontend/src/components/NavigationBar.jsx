@@ -54,10 +54,20 @@ function NavigationBar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/webgl">
-                  WebGL
+                <Link className="nav-link" to="/marketplace">
+                  Marketplace
                 </Link>
               </li>
+              <li className="nav-item">
+              <a
+                className="nav-link"
+                href="https://eeqcn-rqaaa-aaaam-aektq-cai.icp0.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WebGL
+              </a>
+            </li>
             </ul>
 
             <button

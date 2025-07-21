@@ -1,10 +1,9 @@
 .tapaCarousel-container {
     font-family: "Montserrat", Arial, Helvetica, sans-serif;
     position: absolute;
-    top: 120px;
+    top: 10%;
     z-index: 100;
     width: 100%;
-    min-height: 700px;
-
-    
+    height: 70vh;
+    background: rgba(0, 0, 0, 0.5);
 }
