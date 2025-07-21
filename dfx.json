@@ -22,8 +22,7 @@
         }
       ],
       "dependencies": [
-        "metabuildcity_backend",
-        "metabuildcity_nft"
+        "metabuildcity_backend"
       ],
       "build": [
         "npm install",
@@ -82,10 +81,11 @@
       ],
       "workspace": "metabuildcity_webgl"
     },
-    "metabuildcity_nft": {
-    "type": "motoko",
-    "main": "src/metabuildcity_nft/main.mo"
-    }
+    "core_nft": {
+     "type": "custom",
+     "candid": "src/core_nft/core_nft.did",
+     "wasm": "src/core_nft/wasm/core_nft_canister.wasm.gz"
+   }
   },
   "defaults": {
     "build": {

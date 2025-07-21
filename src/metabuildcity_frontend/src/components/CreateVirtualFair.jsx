@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import nftActor from "../utils/nftActor";
 import "./CreateVirtualFair.scss";
+import { Principal } from "@dfinity/principal";
 
 const CreateVirtualFair = () => {
   const [formData, setFormData] = useState({
@@ -26,17 +27,35 @@ const CreateVirtualFair = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // 1. Subir imagen/video al storage canister (si hay archivo)
+      let assetUrl = "";
+      if (formData.media) {
+        assetUrl = await subirAssetAlStorageCanister(formData.media); // Debes implementar esta función
+      }
+
+      // 2. Preparar metadatos
       const metadata = [
-        { name: "Fair Name", value: formData.fairName },
-        { name: "Organizer Name", value: formData.organizerName },
-        { name: "Sector", value: formData.sector },
-        { name: "Sub-sector", value: formData.subSector },
-        { name: "Wallet ID", value: formData.walletId },
-        // Puedes agregar más metadatos según sea necesario
+        ["Fair Name", { Text: formData.fairName }],
+        ["Organizer Name", { Text: formData.organizerName }],
+        ["Sector", { Text: formData.sector }],
+        ["Sub-sector", { Text: formData.subSector }],
+        ["Asset URL", { Text: assetUrl }],
       ];
 
-      const tokenId = await nftActor.mint(metadata);
-      console.log("NFT creado con ID:", tokenId);
+      // 3. Convertir walletId a Principal
+      const principal = Principal.fromText(formData.walletId);
+
+      // 4. Llamar al método mint del canister estándar
+      const tokenId = await nftActor.icrc7_mint({
+        to: principal, // principal del destinatario
+        metadata: [
+          ["Fair Name", { Text: formData.fairName }],
+          ["Organizer Name", { Text: formData.organizerName }],
+          // ...otros metadatos
+        ],
+        // ...otros campos según el canister
+      });
+
       setSubmitted(true);
     } catch (error) {
       console.error("Error al crear el NFT:", error);

@@ -18,8 +18,7 @@ export default defineConfig({
     port: 5173, // Puerto por defecto de Vite
     strictPort: true, // Evita cambiar el puerto si está ocupado
     headers: {
-      "Content-Security-Policy":
-        "default-src 'self'; connect-src 'self' http://localhost:4943 https://ic0.app https://*.ic0.app data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",   
+      "Content-Security-Policy": "default-src 'self'; connect-src 'self' http://localhost:4943 https://icp0.io https://explorer-api.walletconnect.com; img-src 'self' data:; font-src 'self' data:; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
     },
     proxy: {
       "/api": {
