@@ -1,0 +1,468 @@
+type Transaction = 
+ record {
+   buyer: AccountIdentifier;
+   price: nat64;
+   seller: AccountIdentifier;
+   time: Time;
+   token: TokenIndex;
+ };
+type TokenIndex = nat32;
+type TokenIdentifier__1 = text;
+type TokenIdentifier = text;
+type Time__1 = int;
+type Time = int;
+type SubAccount = vec nat8;
+type Result_9 = 
+ variant {
+   err: text;
+   ok: record {
+         current_page: nat;
+         data: vec Order;
+         total_pages: nat;
+       };
+ };
+type Result_8 = 
+ variant {
+   err: text;
+   ok: vec Order;
+ };
+type Result_7 = 
+ variant {
+   err: text;
+   ok: Order;
+ };
+type Result_6 = 
+ variant {
+   err: text;
+   ok:
+    record {
+      current_page: nat;
+      data: vec record {
+                  TokenIndex;
+                  TokenIdentifier;
+                  Listing;
+                  Metadata;
+                };
+      total_pages: nat;
+    };
+ };
+type Result_5 = 
+ variant {
+   err: CommonError;
+   ok: record {
+         AccountIdentifier;
+         nat64;
+       };
+ };
+type Result_4 = 
+ variant {
+   err: CommonError;
+   ok: text;
+ };
+type Result_3 = 
+ variant {
+   err: CommonError;
+   ok;
+ };
+type Result_2 = 
+ variant {
+   err: CommonError;
+   ok: nat64;
+ };
+type Result_18 = 
+ variant {
+   err: text;
+   ok:
+    record {
+      current_page: nat;
+      data: vec record {
+                  TokenIndex;
+                  TokenIdentifier;
+                  Transaction;
+                };
+      total_pages: nat;
+    };
+ };
+type Result_17 = 
+ variant {
+   err: text;
+   ok:
+    record {
+      current_page: nat;
+      data: vec record {
+                  TokenIndex;
+                  TokenIdentifier;
+                  Transaction;
+                  text;
+                };
+      total_pages: nat;
+    };
+ };
+type Result_16 = 
+ variant {
+   err: text;
+   ok:
+    record {
+      current_page: nat;
+      data: vec record {
+                  TokenIndex;
+                  TokenIdentifier;
+                  Listing;
+                  Metadata;
+                  nat;
+                };
+      total_pages: nat;
+    };
+ };
+type Result_15 = 
+ variant {
+   err: text;
+   ok: record {
+         nat;
+         Time__1;
+       };
+ };
+type Result_14 = 
+ variant {
+   err: text;
+   ok:
+    record {
+      current_page: nat;
+      data: vec record {
+                  TokenIndex;
+                  AccountIdentifier;
+                  Metadata__1;
+                  opt nat64;
+                };
+      total_pages: nat;
+    };
+ };
+type Result_13 = 
+ variant {
+   err: text;
+   ok:
+    record {
+      current_page: nat;
+      data: vec record {
+                  principal;
+                  nat;
+                  Time__1;
+                  text;
+                  text;
+                  opt blob;
+                };
+      total_pages: nat;
+    };
+ };
+type Result_12 = 
+ variant {
+   err: CommonError;
+   ok: vec TokenIdentifier;
+ };
+type Result_11 = 
+ variant {
+   err: text;
+   ok:
+    record {
+      current_page: nat;
+      data:
+       vec record {
+             TokenIndex;
+             AccountIdentifier;
+             Metadata__1;
+             opt nat64;
+             nat;
+           };
+      total_pages: nat;
+    };
+ };
+type Result_10 = 
+ variant {
+   err: text;
+   ok: record {
+         principal;
+         text;
+         nat;
+         text;
+         text;
+         text;
+         opt blob;
+       };
+ };
+type Result_1 = 
+ variant {
+   err: text;
+   ok: text;
+ };
+type Result = 
+ variant {
+   err: CommonError;
+   ok:
+    record {
+      boughtNFTs:
+       vec
+        record {
+          TokenIdentifier;
+          TokenIndex;
+          Metadata;
+          text;
+          principal;
+          opt nat64;
+        };
+      unboughtNFTs:
+       vec
+        record {
+          TokenIdentifier;
+          TokenIndex;
+          Metadata;
+          text;
+          principal;
+          opt nat64;
+        };
+    };
+ };
+type Order = 
+ record {
+   accountIdentifier: principal;
+   address: text;
+   city: text;
+   collectionCanisterId: principal;
+   country: text;
+   email: text;
+   id: nat;
+   landmark: opt text;
+   orderTime: Time__1;
+   phone: text;
+   pincode: text;
+   uuid: text;
+ };
+type Metadata__1 = 
+ variant {
+   fungible:
+    record {
+      decimals: nat8;
+      metadata: opt MetadataContainer__1;
+      name: text;
+      symbol: text;
+    };
+   nonfungible:
+    record {
+      asset: text;
+      description: text;
+      metadata: opt MetadataContainer__1;
+      name: text;
+      thumbnail: text;
+    };
+ };
+type MetadataValue__1 = 
+ record {
+   text;
+   variant {
+     "blob": blob;
+     "nat": nat;
+     "nat8": nat8;
+     "text": text;
+   };
+ };
+type MetadataValue = 
+ record {
+   text;
+   variant {
+     "blob": blob;
+     "nat": nat;
+     "nat8": nat8;
+     "text": text;
+   };
+ };
+type MetadataContainer__1 = 
+ variant {
+   "blob": blob;
+   data: vec MetadataValue__1;
+   json: text;
+ };
+type MetadataContainer = 
+ variant {
+   "blob": blob;
+   data: vec MetadataValue;
+   json: text;
+ };
+type Metadata = 
+ variant {
+   fungible:
+    record {
+      decimals: nat8;
+      metadata: opt MetadataContainer;
+      name: text;
+      symbol: text;
+    };
+   nonfungible:
+    record {
+      asset: text;
+      description: text;
+      metadata: opt MetadataContainer;
+      name: text;
+      thumbnail: text;
+    };
+ };
+type Listing = 
+ record {
+   locked: opt Time;
+   price: nat64;
+   seller: principal;
+ };
+type ListRequest = 
+ record {
+   from_subaccount: opt SubAccount;
+   price: opt nat64;
+   token: TokenIdentifier;
+ };
+type Deposit = 
+ record {
+   collectionCanister: principal;
+   pubKey: principal;
+   sender: principal;
+   timestamp: Time__1;
+   tokenId: TokenIndex;
+ };
+type CommonError = 
+ variant {
+   InvalidToken: TokenIdentifier__1;
+   Other: text;
+ };
+type AccountIdentifier = text;
+service : {
+  addToFavorites: (AccountIdentifier, TokenIdentifier) -> (Result_4);
+  add_collection_to_map: (principal) -> (text);
+  all_settelment: (principal) -> ();
+  alltransactions: (nat, nat) -> (Result_18);
+  alluseractivity: (AccountIdentifier, nat, nat) -> (Result_17);
+  balance_nft_settelment: (principal) -> ();
+  balance_settelment: (principal) -> ();
+  countlistings: (principal, nat, nat) -> (Result_16);
+  createExtCollection: (text, text, text) -> (principal, principal);
+  create_user: (principal, text) -> (Result_15);
+  fetchCycles: () -> (nat);
+  getAllCollectionNFTs: (principal, nat, nat) -> (Result_14);
+  getAllCollections: () ->
+   (vec record {
+          principal;
+          vec record {
+                Time__1;
+                principal;
+                text;
+                text;
+                text;
+              };
+        });
+  getAllUsers: (nat, nat) -> (Result_13) query;
+  getDeposits: () -> (vec Deposit) query;
+  getFavorites: (AccountIdentifier) -> (Result_12) query;
+  getFilteredCollectionNFTs: (principal, nat, nat) -> (Result_11);
+  getFungibleTokens: (principal) ->
+   (vec record {
+          TokenIndex;
+          AccountIdentifier;
+          Metadata__1;
+        });
+  getNftTokenId: (principal, TokenIndex) -> (TokenIdentifier);
+  getNonFungibleTokens: (principal) ->
+   (vec record {
+          TokenIndex;
+          AccountIdentifier;
+          Metadata__1;
+        });
+  getSingleCollectionDetails: (principal) ->
+   (vec record {
+          TokenIndex;
+          AccountIdentifier;
+          Metadata__1;
+        }, nat);
+  getSingleNonFungibleTokens: (principal, TokenIndex, AccountIdentifier) ->
+   (vec record {
+          TokenIndex;
+          AccountIdentifier;
+          Metadata;
+          opt nat64;
+          bool;
+        });
+  getTotalNFTs: () -> (nat);
+  getTotalUsers: () -> (nat) query;
+  getUserCollectionDetails: () ->
+   (opt vec record {
+              Time__1;
+              principal;
+              text;
+              text;
+              text;
+            });
+  getUserCollections: () -> (opt vec record {
+                                       Time__1;
+                                       principal;
+                                     }) query;
+  getUserDetails: (principal) -> (Result_10) query;
+  getallOrders: (nat, nat) -> (Result_9) query;
+  gethardcopy: (principal, text, principal, text, text, text, text, text,
+   text, opt text) -> (Result_1);
+  getuserorders: (principal) -> (Result_8) query;
+  isController: (principal, principal) -> (bool);
+  listings: (principal) ->
+   (vec record {
+          TokenIndex;
+          TokenIdentifier;
+          Listing;
+          Metadata;
+        });
+  listprice: (principal, ListRequest) -> (Result_3);
+  marketstats: (principal) -> (nat64, nat64, nat64, nat64, nat, nat, nat);
+  mintExtFungible: (principal, text, text, nat8, opt MetadataContainer,
+   nat) -> (vec TokenIndex);
+  mintExtNonFungible: (principal, text, text, text, text,
+   opt MetadataContainer, nat) -> (vec record {
+                                         TokenIndex;
+                                         TokenIdentifier;
+                                       });
+  mintExtNonFungible2: (principal, text, text, text, text,
+   opt MetadataContainer, nat, opt nat64) ->
+   (vec record {
+          TokenIndex;
+          TokenIdentifier;
+          Result_3;
+        });
+  mintExtNonFungible3: (principal, text, text, text, text,
+   opt MetadataContainer, nat, opt nat64) ->
+   (vec record {
+          TokenIndex;
+          TokenIdentifier;
+          Result_3;
+        });
+  orderDetails: (principal, nat) -> (Result_7) query;
+  plistings: (principal, nat, nat) -> (Result_6);
+  purchaseNft: (principal, TokenIdentifier, nat64, AccountIdentifier) ->
+   (Result_5);
+  removeCollection: (principal) -> (text);
+  removeFromFavorites: (AccountIdentifier, TokenIdentifier) -> (Result_4);
+  removeOrder: (principal, nat) -> (Result_1);
+  send_balance_and_nft: (principal, AccountIdentifier, nat64,
+   opt SubAccount) -> (Result_2);
+  settlepurchase: (principal, AccountIdentifier) -> (Result_3);
+  totalcollections: () -> (nat);
+  transactions: (principal) ->
+   (vec record {
+          TokenIndex;
+          TokenIdentifier;
+          Transaction;
+        });
+  transfer_balance: (principal, AccountIdentifier, nat64, opt SubAccount) ->
+   (Result_2);
+  updateOrder: (principal, nat, text, text, text, text, text, text,
+   opt text) -> (Result_1);
+  updateUserDetails: (principal, text, text, text, opt blob) -> (Result_1);
+  userNFTcollection: (principal, AccountIdentifier, nat, nat) -> (Result);
+  useractivity: (principal, AccountIdentifier) ->
+   (vec record {
+          TokenIndex;
+          TokenIdentifier;
+          Transaction;
+          text;
+        });
+}

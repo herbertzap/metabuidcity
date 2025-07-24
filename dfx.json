@@ -22,7 +22,9 @@
         }
       ],
       "dependencies": [
-        "metabuildcity_backend"
+        "metabuildcity_backend",
+        "begods_backend",
+        "begods_assethandler"
       ],
       "build": [
         "npm install",
@@ -81,11 +83,16 @@
       ],
       "workspace": "metabuildcity_webgl"
     },
-    "core_nft": {
-     "type": "custom",
-     "candid": "src/core_nft/core_nft.did",
-     "wasm": "src/core_nft/wasm/core_nft_canister.wasm.gz"
-   }
+    "begods_backend": {
+      "type": "custom",
+      "candid": "src/begods_backend/nft.did",
+      "wasm": "src/begods_backend/wasm/nft.wasm"
+    },
+    "begods_assethandler": {
+      "type": "custom",
+      "candid": "src/begods_assethandler/assethandler.did",
+      "wasm": "src/begods_assethandler/wasm/assethandler.wasm"
+    }
   },
   "defaults": {
     "build": {

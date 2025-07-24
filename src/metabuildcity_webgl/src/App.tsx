@@ -23,9 +23,9 @@ function App() {
     script.onload = () => {
       // @ts-ignore: Unity loader global
       createUnityInstance(canvas, {
-        dataUrl: "/Build/mbf_webgl_gzip.data.gz",
-        frameworkUrl: "/Build/mbf_webgl_gzip.framework.js.gz",
-        codeUrl: "/Build/mbf_webgl_gzip.wasm.gz",
+        dataUrl: "/Build/mbf_webgl_gzip.data",
+        frameworkUrl: "/Build/mbf_webgl_gzip.framework.js",
+        codeUrl: "/Build/mbf_webgl_gzip.wasm",
       }).catch((e: unknown) => console.error("❌ Error al iniciar Unity:", e));
     };
 

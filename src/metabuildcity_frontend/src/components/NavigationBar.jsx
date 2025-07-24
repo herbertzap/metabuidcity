@@ -1,129 +1,115 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import * as bootstrap from 'bootstrap';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { loginWithInternetIdentity } from '../utils/ic-auth';
-import { useAccount } from 'wagmi';
+import React, { useContext, useState, useRef, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./MetabuildLanding.scss";
+import { AuthContext } from "../utils/AuthContext";
 
-function NavigationBar() {
-  const { address, isConnected } = useAccount();
+function abbreviatePrincipal(principal) {
+  if (!principal) return "";
+  return principal.slice(0, 6) + "..." + principal.slice(-5);
+}
 
-  const handleInternetIdentityLogin = async () => {
-    try {
-      const modalElement = document.getElementById('walletLoginModal');
-      const principal = await loginWithInternetIdentity();
-      console.log('✅ Principal autenticado:', principal);
-      alert(`Autenticado como: ${principal}`);
-    } catch (err) {
-      console.error('❌ Error al conectar con Internet Identity:', err);
-      alert('No se pudo iniciar sesión.\n' + err?.message || err);
-    }
+const NavigationBar = () => {
+  const { principal, walletType, getWalletDisplayName, logout } = useContext(AuthContext);
+  const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
+  const hideTimeoutRef = useRef(null);
+
+  // Cleanup del timeout al desmontar el componente
+  useEffect(() => {
+    return () => {
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
   };
-  
 
-  const handlePhantomLogin = () => {
-    console.log('Conectar con Phantom Wallet');
+  const handleMouseEnter = () => {
+    // Limpiar cualquier timeout pendiente
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current);
+      hideTimeoutRef.current = null;
+    }
+    setShowMenu(true);
+  };
+
+  const handleMouseLeave = () => {
+    // Configurar timeout de 2 segundos para ocultar el menú
+    hideTimeoutRef.current = setTimeout(() => {
+      setShowMenu(false);
+      hideTimeoutRef.current = null;
+    }, 2000); // 2 segundos de delay
+  };
+
+  const getWalletIcon = () => {
+    switch (walletType) {
+      case 'internet_identity':
+        return "🆔";
+      case 'plug':
+        return "🔌";
+      case 'nfid':
+        return "🎫";
+      case 'wallet_connect':
+        return "🔗";
+      default:
+        return "👤";
+    }
   };
 
   return (
-    <>
-      <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-        <div className="container d-flex justify-content-between align-items-center">
-          <Link className="navbar-brand" to="/">
-            <img src="/LogoMetaBuildCity.png" alt="Logo" className="logo" />
-          </Link>
-
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+    <nav className="navbar navbar-expand-lg metabuild-navbar" style={{background: "rgba(10,14,39,0.95)", borderBottom: "1px solid rgba(0,123,255,0.3)", position: "fixed", width: "100%", zIndex: 1000}}>
+      <div className="container-fluid d-flex align-items-center justify-content-between">
+        <Link className="navbar-brand d-flex align-items-center" to="/">
+          <img src="/LogoMetaBuildCity.png" alt="MetaBuild City" height="40" style={{marginRight: 12}} />
+          <span className="fw-bold text-light">MetaBuild City</span>
+        </Link>
+        <div className="d-flex align-items-center gap-3">
+          <Link className="nav-link text-light" to="/home">Dashboard</Link>
+          <Link className="nav-link text-light" to="/">Landing</Link>
+          {/* Menú de usuario */}
+          <div
+            className="user-info ms-3"
+            style={{position: "relative"}}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          
-
-          <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul className="navbar-nav me-3">
-              <li className="nav-item">
-                <Link className="nav-link" to="/">
-                  Inicio
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/marketplace">
-                  Marketplace
-                </Link>
-              </li>
-              <li className="nav-item">
-              <a
-                className="nav-link"
-                href="https://eeqcn-rqaaa-aaaam-aektq-cai.icp0.io/"
-                target="_blank"
-                rel="noopener noreferrer"
+            <div className="d-flex align-items-center" style={{cursor: "pointer"}}>
+              <span style={{fontSize: 18, marginRight: 8}}>{getWalletIcon()}</span>
+              <span className="text-info" style={{fontWeight: 600}}>
+                {principal ? abbreviatePrincipal(principal) : "Usuario"}
+              </span>
+            </div>
+            {showMenu && principal && (
+              <div 
+                style={{position: "absolute", right: 0, top: "120%", background: "#181c2f", border: "1px solid #00d4ff", borderRadius: 10, padding: 16, minWidth: 220, zIndex: 2000, boxShadow: "0 8px 32px rgba(0,0,0,0.3)"}}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
-                WebGL
-              </a>
-            </li>
-            </ul>
-
-            <button
-              className="btn btn-sm bg-primary text-bg-light"
-              data-bs-toggle="modal"
-              data-bs-target="#walletLoginModal"
-            >
-              Iniciar sesión
-            </button>
-
-            
-
-          </div>
-        </div>
-      </nav>
-      <div className="nav-top">
-
-      </div>
-
-      {/* MODAL */}
-      <div
-        className="modal fade"
-        id="walletLoginModal"
-        tabIndex="-1"
-        aria-labelledby="walletLoginModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content bg-dark text-light">
-            <div className="modal-header">
-              <h5 className="modal-title" id="walletLoginModalLabel">Conectar Billetera</h5>
-              <button
-                type="button"
-                className="btn-close btn-close-white"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body d-flex flex-column gap-3">
-              {/* RainbowKit */}
-              <ConnectButton showBalance={false} />
-
-              <button className="btn btn-outline-warning" onClick={handleInternetIdentityLogin}>
-                Conectar con InternetIdentity
-              </button>
-
-              {/* Phantom (Solana) */}
-              <button className="btn btn-outline-warning" onClick={handlePhantomLogin}>
-                Conectar con Phantom
-              </button>
-            </div>
+                <div style={{fontSize: 13, color: "#b8c5d6", marginBottom: 12}}>
+                  <div style={{marginBottom: 8}}>
+                    <strong>Wallet:</strong> <span style={{color: "#00d4ff"}}>{getWalletDisplayName()}</span>
+                  </div>
+                  <div style={{marginBottom: 8}}>
+                    <strong>Principal:</strong> 
+                    <div style={{wordBreak: "break-all", fontSize: 11, marginTop: 4, padding: 6, background: "rgba(0,0,0,0.3)", borderRadius: 4}}>
+                      {principal}
+                    </div>
+                  </div>
+                </div>
+                <button className="btn btn-danger w-100" style={{borderRadius: 8, fontWeight: 600}} onClick={handleLogout}>
+                  Cerrar sesión
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
-    </>
+    </nav>
   );
-}
+};
 
-export default NavigationBar;
+export default NavigationBar; 
