@@ -16,7 +16,7 @@ const CreateVirtualFair = ({ onCancel, onSuccess }) => {
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { principal } = useAuth();
+  const { principal, checkPlugNFTs, requestNFTApproval } = useAuth();
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -150,6 +150,106 @@ const CreateVirtualFair = ({ onCancel, onSuccess }) => {
       );
 
       console.log("✅ NFT minteado exitosamente:", result);
+      
+      // 10. Extraer información del NFT creado
+      if (result && result.length > 0) {
+        const [tokenIndex, tokenIdentifier] = result[0];
+        console.log("🎯 NFT creado:", {
+          tokenIndex: tokenIndex.toString(),
+          tokenIdentifier: tokenIdentifier,
+          collectionCanister: collectionCanisterId.toText()
+        });
+
+        // 11. Si está usando Plug Wallet, solicitar aprobación para transferir el NFT
+        if (window.ic?.plug) {
+          try {
+            console.log("🔌 Solicitando aprobación de Plug Wallet para NFT...");
+            
+            // Crear la información del NFT para Plug
+            const nftInfo = {
+              canisterId: collectionCanisterId.toText(),
+              tokenIdentifier: tokenIdentifier,
+              tokenIndex: tokenIndex,
+              metadata: {
+                name: formData.fairName,
+                description: "NFT creado desde metabuildcity",
+                image: `https://frmde-4yaaa-aaaam-aenlq-cai.raw.icp0.io/?imgid=${imgId}`,
+                attributes: [
+                  { trait_type: "Organizer", value: formData.organizerName },
+                  { trait_type: "Sector", value: formData.sector },
+                  { trait_type: "Sub-Sector", value: formData.subSector }
+                ]
+              }
+            };
+
+            console.log("📋 Información del NFT para Plug:", nftInfo);
+            
+            // Intentar solicitar aprobación de NFT
+            try {
+              console.log("🔄 Solicitando aprobación de wallet...");
+              await requestNFTApproval(nftInfo);
+              console.log("✅ Aprobación recibida exitosamente");
+            } catch (approvalError) {
+              console.log("⚠️ Error en aprobación (puede ser normal):", approvalError);
+              // La aprobación puede fallar por varios motivos, pero el NFT ya está creado
+            }
+
+            // Verificar NFTs en Plug después de un momento
+            setTimeout(async () => {
+              try {
+                console.log("🔍 Verificando NFTs en Plug Wallet...");
+                const plugNFTs = await checkPlugNFTs();
+                console.log("🎨 NFTs encontrados en Plug:", plugNFTs);
+              } catch (checkError) {
+                console.log("⚠️ Error verificando NFTs en Plug:", checkError);
+              }
+            }, 3000); // Esperar 3 segundos
+            
+            // Mostrar información del contrato NFT generado
+            alert(`🎉 ¡NFT Creado Exitosamente!
+
+📄 CONTRATO NFT GENERADO:
+• Token ID: ${tokenIdentifier}
+• Colección: ${collectionCanisterId.toText()}
+• Nombre: ${formData.fairName}
+• Estándar: EXT NFT
+
+🔌 INTEGRACIÓN CON PLUG WALLET:
+• El NFT se ha creado en la blockchain
+• Puede tardar unos minutos en aparecer en tu wallet
+• Si no aparece, refresca Plug Wallet
+• Puedes verificar el NFT usando el Token ID
+
+💡 TIP: Ve a tu Plug Wallet > NFTs para ver tu nueva colección.`);
+
+          } catch (plugError) {
+            console.log("⚠️ Error con Plug Wallet:", plugError);
+            // Continuar sin error crítico - mostrar info básica
+            alert(`🎉 ¡NFT Creado Exitosamente!
+
+📄 CONTRATO NFT GENERADO:
+• Token ID: ${tokenIdentifier}
+• Colección: ${collectionCanisterId.toText()}
+• Nombre: ${formData.fairName}
+• Estándar: EXT NFT
+
+⚠️ Nota: Hubo un problema con la integración de Plug Wallet,
+pero tu NFT se creó correctamente en la blockchain.`);
+          }
+        } else {
+          // Para otras wallets, mostrar información del contrato
+          alert(`🎉 ¡NFT Creado Exitosamente!
+
+📄 CONTRATO NFT GENERADO:
+• Token ID: ${tokenIdentifier}
+• Colección: ${collectionCanisterId.toText()}
+• Nombre: ${formData.fairName}
+• Estándar: EXT NFT
+
+Para ver tu NFT, puedes usar el Token ID en cualquier explorador de NFTs de ICP.`);
+        }
+      }
+      
       setSubmitted(true);
       
       // Llamar al callback de éxito si existe

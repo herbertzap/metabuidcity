@@ -171,6 +171,63 @@ export function AuthProvider({ children }) {
     }
   };
 
+  // Función para verificar NFTs en Plug Wallet
+  const checkPlugNFTs = async () => {
+    if (!window.ic?.plug) {
+      console.log("❌ Plug Wallet no está disponible");
+      return [];
+    }
+
+    try {
+      const isConnected = await window.ic.plug.isConnected();
+      if (!isConnected) {
+        console.log("❌ Plug Wallet no está conectado");
+        return [];
+      }
+
+      // Obtener NFTs del usuario en Plug
+      const principal = await window.ic.plug.agent.getPrincipal();
+      console.log("🔍 Verificando NFTs en Plug para:", principal.toText());
+
+      // Plug Wallet tiene métodos para obtener NFTs
+      // Esto puede variar según la versión de Plug
+      const nfts = await window.ic.plug.requestBalance();
+      console.log("🎨 NFTs en Plug Wallet:", nfts);
+      
+      return nfts || [];
+    } catch (error) {
+      console.error("❌ Error verificando NFTs en Plug:", error);
+      return [];
+    }
+  };
+
+  // Función para solicitar aprobación de NFT en Plug
+  const requestNFTApproval = async (nftInfo) => {
+    if (!window.ic?.plug) {
+      throw new Error("Plug Wallet no está disponible");
+    }
+
+    try {
+      console.log("🔌 Solicitando aprobación de NFT en Plug...");
+      
+      // Plug Wallet debería mostrar una ventana de aprobación
+      const approval = await window.ic.plug.requestTransfer({
+        to: principal, // Transferir al propio usuario
+        amount: 0, // NFT no tiene amount
+        token: nftInfo.tokenIdentifier,
+        memo: `NFT: ${nftInfo.metadata.name}`,
+        from_subaccount: null,
+        fee: 0
+      });
+
+      console.log("✅ Aprobación de NFT recibida:", approval);
+      return approval;
+    } catch (error) {
+      console.error("❌ Error solicitando aprobación de NFT:", error);
+      throw error;
+    }
+  };
+
   const logout = async () => {
     try {
       if (walletType === WALLET_TYPES.INTERNET_IDENTITY || walletType === WALLET_TYPES.NFID) {
@@ -212,7 +269,9 @@ export function AuthProvider({ children }) {
       loginWithNFID,
       loginWithPlug,
       logout,
-      getWalletDisplayName
+      getWalletDisplayName,
+      checkPlugNFTs,
+      requestNFTApproval
     }}>
       {children}
     </AuthContext.Provider>

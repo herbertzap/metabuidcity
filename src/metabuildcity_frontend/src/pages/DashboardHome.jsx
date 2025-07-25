@@ -62,42 +62,70 @@ const DashboardHome = () => {
       // 2. Obtener NFTs de cada colección
       const allNFTs = [];
       
+      // CORRECCIÓN: Los datos están mezclados entre campos
+      // Cada "campo" contiene en realidad una colección completa diferente
+      // Necesitamos extraer todas las colecciones de todos los campos
+      
+      const allCollectionData = [];
+      
       for (const [timestamp, collectionCanisterId, collectionName, collectionSymbol, collectionMetadata] of userCollections) {
-        try {
-          console.log(`🔍 Elemento de colección raw:`, [timestamp, collectionCanisterId, collectionName, collectionSymbol, collectionMetadata]);
-          console.log(`📋 Tipo de collectionCanisterId:`, typeof collectionCanisterId, collectionCanisterId);
-          
-          // El collectionCanisterId viene como un array con formato: [timestamp, canisterId, name, symbol, metadata]
-          // Necesitamos extraer el canisterId que está en la posición 1
-          let canisterIdStr = null;
-          let canisterIdObject = null;
-          
-          if (Array.isArray(collectionCanisterId) && collectionCanisterId.length >= 2) {
-            // Extraer el canister ID del array (posición 1)
-            canisterIdObject = collectionCanisterId[1];
+        console.log(`🔍 Elemento de colección raw:`, [timestamp, collectionCanisterId, collectionName, collectionSymbol, collectionMetadata]);
+        
+        // Cada uno de estos campos puede contener una colección diferente
+        const fieldsToCheck = [
+          { name: 'timestamp', data: timestamp },
+          { name: 'collectionCanisterId', data: collectionCanisterId },
+          { name: 'collectionName', data: collectionName },
+          { name: 'collectionSymbol', data: collectionSymbol },
+          { name: 'collectionMetadata', data: collectionMetadata }
+        ];
+        
+        for (const field of fieldsToCheck) {
+          if (Array.isArray(field.data) && field.data.length >= 5) {
+            // Este campo contiene datos de colección válidos
+            const [fieldTimestamp, fieldCanisterId, fieldName, fieldSymbol, fieldMetadata] = field.data;
             
-            if (typeof canisterIdObject === 'object' && canisterIdObject.__principal__) {
-              canisterIdStr = canisterIdObject.__principal__;
-            } else if (typeof canisterIdObject === 'object' && canisterIdObject.toText) {
-              canisterIdStr = canisterIdObject.toText();
-            } else if (typeof canisterIdObject === 'string') {
-              canisterIdStr = canisterIdObject;
+            // Verificar si ya tenemos esta colección (evitar duplicados)
+            const collectionKey = Array.isArray(fieldCanisterId) && fieldCanisterId.length >= 2 
+              ? (fieldCanisterId[1]?.toText ? fieldCanisterId[1].toText() : String(fieldCanisterId[1]))
+              : String(fieldCanisterId);
+            
+            const alreadyExists = allCollectionData.some(col => col.canisterIdStr === collectionKey);
+            
+            if (!alreadyExists && collectionKey && collectionKey !== 'undefined') {
+              console.log(`📦 Colección encontrada en campo '${field.name}':`, fieldName);
+              
+              allCollectionData.push({
+                timestamp: fieldTimestamp,
+                canisterId: fieldCanisterId,
+                name: fieldName,
+                symbol: fieldSymbol,
+                metadata: fieldMetadata,
+                canisterIdStr: collectionKey,
+                canisterIdObject: Array.isArray(fieldCanisterId) && fieldCanisterId.length >= 2 ? fieldCanisterId[1] : fieldCanisterId
+              });
             }
           }
-
-          if (!canisterIdStr || !canisterIdObject) {
-            console.log(`❌ No se pudo extraer canister ID válido, saltando...`);
-            continue;
-          }
-
-          console.log(`🔍 Procesando colección: ${collectionName} (${canisterIdStr})`);
-          console.log(`📋 Datos de colección completos:`, { timestamp, collectionCanisterId, collectionName, collectionSymbol, collectionMetadata });
+        }
+      }
+      
+      console.log(`🎯 Total de colecciones únicas encontradas: ${allCollectionData.length}`);
+      console.log(`📋 Colecciones procesadas:`, allCollectionData.map(c => c.name));
+      
+      // 3. Procesar cada colección única
+      for (const collection of allCollectionData) {
+        try {
+          console.log(`🔍 Procesando colección: ${collection.name} (${collection.canisterIdStr})`);
+          console.log(`📋 Datos de colección completos:`, { timestamp: collection.timestamp, collectionCanisterId: collection.canisterId, collectionName: collection.name, collectionSymbol: collection.symbol, collectionMetadata: collection.metadata });
           
           // Usar el objeto Principal original en lugar del string
-          const nftsResponse = await begodsBackendActor.getAllCollectionNFTs(canisterIdObject, 50, 0);
+          const nftsResponse = await begodsBackendActor.getAllCollectionNFTs(collection.canisterIdObject, 50, 0);
+          
+          console.log(`🔍 Respuesta de getAllCollectionNFTs para ${collection.name}:`, nftsResponse);
           
           if (nftsResponse.ok && nftsResponse.ok.data.length > 0) {
-            console.log(`📦 NFTs encontrados en colección ${collectionName}:`, nftsResponse.ok.data);
+            console.log(`📦 NFTs encontrados en colección ${collection.name}:`, nftsResponse.ok.data);
+            console.log(`📊 Total NFTs en esta colección: ${nftsResponse.ok.data.length}`);
             
             // Procesar cada NFT
             for (const nft of nftsResponse.ok.data) {
@@ -110,11 +138,11 @@ const DashboardHome = () => {
                 // Parsear metadatos de colección de manera segura
                 let collectionMeta = {};
                 try {
-                  if (collectionMetadata && collectionMetadata !== 'undefined' && typeof collectionMetadata === 'string') {
-                    collectionMeta = JSON.parse(collectionMetadata);
-                  } else if (Array.isArray(collectionMetadata) && collectionMetadata.length > 0) {
+                  if (collection.metadata && collection.metadata !== 'undefined' && typeof collection.metadata === 'string') {
+                    collectionMeta = JSON.parse(collection.metadata);
+                  } else if (Array.isArray(collection.metadata) && collection.metadata.length > 0) {
                     // Si collectionMetadata es un array, tomar el primer elemento
-                    const metaString = collectionMetadata[0];
+                    const metaString = collection.metadata[0];
                     if (metaString && metaString !== 'undefined' && typeof metaString === 'string') {
                       collectionMeta = JSON.parse(metaString);
                     }
@@ -164,17 +192,17 @@ const DashboardHome = () => {
                 let finalTitle = "NFT sin título";
                 if (nftMetadata.name) {
                   finalTitle = nftMetadata.name;
-                } else if (Array.isArray(collectionName) && collectionName.length >= 3) {
+                } else if (Array.isArray(collection.name) && collection.name.length >= 3) {
                   // collectionName es un array [timestamp, canisterId, "Feria: nombre", symbol, metadata]
                   // Extraer solo el nombre de la feria del índice 2
-                  const fairName = collectionName[2];
+                  const fairName = collection.name[2];
                   if (typeof fairName === 'string' && fairName.startsWith('Feria: ')) {
                     finalTitle = fairName.replace('Feria: ', '');
                   } else {
                     finalTitle = String(fairName);
                   }
-                } else if (typeof collectionName === 'string') {
-                  finalTitle = collectionName;
+                } else if (typeof collection.name === 'string') {
+                  finalTitle = collection.name;
                 }
 
                 const nftData = {
@@ -184,7 +212,7 @@ const DashboardHome = () => {
                   image: finalImageUrl,
                   organizer: nftMetadata.organizer || collectionMeta.createdBy || "Organizador desconocido",
                   button: "VER PRODUCTOS",
-                  collectionId: canisterIdStr,
+                  collectionId: collection.canisterIdStr,
                   tokenIndex: tokenIdStr,
                   sector: collectionMeta.sector || "General",
                   subSector: collectionMeta.subSector || "N/A"
@@ -192,18 +220,22 @@ const DashboardHome = () => {
 
                 allNFTs.push(nftData);
                 console.log(`✅ NFT procesado exitosamente:`, nftData);
+                console.log(`📊 Total NFTs en allNFTs hasta ahora: ${allNFTs.length}`);
 
               } catch (error) {
                 console.log(`❌ Error procesando NFT:`, error);
               }
             }
+          } else {
+            console.log(`⚠️ No se encontraron NFTs en colección ${collection.name}:`, nftsResponse);
           }
         } catch (error) {
-          console.error(`Error obteniendo NFTs de colección ${collectionName}:`, error);
+          console.error(`❌ Error obteniendo NFTs de colección ${collection.name}:`, error);
         }
       }
 
-      console.log("🎨 NFTs procesados:", allNFTs);
+      console.log("🎨 NFTs procesados FINAL:", allNFTs);
+      console.log(`📊 Total de NFTs a mostrar: ${allNFTs.length}`);
       setUserNFTs(allNFTs);
       
     } catch (error) {
