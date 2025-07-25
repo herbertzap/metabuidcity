@@ -8,7 +8,12 @@
   "metabuildcity_webgl": {
     "ic": "eeqcn-rqaaa-aaaam-aektq-cai"
   },
-  "core_nft": {
-    "ic": "by6od-j4aaa-aaaaa-qaadq-cai"
+  "begods_backend": {
+    "ic": "fwnfq-raaaa-aaaam-aenla-cai",
+    "local": "bd3sg-teaaa-aaaaa-qaaba-cai"
+  },
+  "begods_assethandler": {
+    "ic": "frmde-4yaaa-aaaam-aenlq-cai",
+    "local": "bkyz2-fmaaa-aaaaa-qaaaq-cai"
   }
 }

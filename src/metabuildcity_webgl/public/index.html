@@ -3,26 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Metabuild Fair</title>
+    <title>Unity WebGL Player | MBF</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
-<style>
-#unity-footer {
-display:none;
-}
-#unity-container.unity-desktop {
-    left: 0%;
-    top: 0%;
-    transform: translate(0%, 0%);
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-}
-</style>
     <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" style="width:100%;height:100vh;" tabindex="-1"></canvas>
+      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -70,11 +57,11 @@ display:none;
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/mbf_webgl.loader.js";
+      var loaderUrl = buildUrl + "/mbf_webgl_gzip.loader.js";
       var config = {
-        dataUrl: buildUrl + "/mbf_webgl.data",
-        frameworkUrl: buildUrl + "/mbf_webgl.framework.js",
-        codeUrl: buildUrl + "/mbf_webgl.wasm",
+        dataUrl: buildUrl + "/mbf_webgl_gzip.data",
+        frameworkUrl: buildUrl + "/mbf_webgl_gzip.framework.js",
+        codeUrl: buildUrl + "/mbf_webgl_gzip.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "MBF",
@@ -107,8 +94,8 @@ display:none;
       } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-        canvas.style.width = "100%";
-        canvas.style.height = "100vh";
+        canvas.style.width = "960px";
+        canvas.style.height = "600px";
       }
 
       loadingBar.style.display = "block";
