@@ -1,8 +1,76 @@
-# `metabuildcity`
+# Metabuild HUB 🚀
 
-Welcome to your new `metabuildcity` project and to the Internet Computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+**Metabuild HUB** is a decentralized platform for launching, customizing, and monetizing virtual fairs and events in the metaverse. Built on **Internet Computer Protocol (ICP)**, it allows organizations to mint their events as NFTs, create interactive 3D stands, and monetize digital assets through a gamified marketplace.
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+---
+
+## 🌐 Overview
+
+Metabuild HUB is the innovation HUB of the metaverse, where organizations and industries can build their virtual districts, host events, and engage with audiences through immersive experiences. Every event is tokenized, every exhibitor receives 3D merch to sell, and every user has a way to earn real money. We’ve already launched high-impact events like **Chile Fintech Forum 2025**.
+
+> 💡 **Everyone earns in Metabuild HUB:** event organizers, exhibitors, and final users — all roles have economic incentives and withdrawal tools integrated.
+
+---
+
+## 🧩 Features
+
+- 🎪 **NFT-based Fair Minting**: Events are tokenized and minted as NFTs using ICP.
+- 🧱 **3D Stand Builder**: Exhibitors customize their stands with prompts, file upload, and live previews.
+- 🛍️ **Virtual Merchandising**: T-shirts, hats, backpacks, shoes – every exhibitor receives 10,000 merch items to sell.
+- 🪙 **Tokenized Withdrawals**: Admin wallets manage revenue from stand and merch sales.
+- 📈 **Leaderboard & Rewards**: Users interact, visit stands, complete quests, and earn tokens.
+- 🔐 **Secure Login**: Plug Wallet and Internet Identity integration.
+- 🕹️ **WebGL Multiplayer**: Built in Unity for browser-based immersive experiences.
+- 🌍 **Public Dashboard**: Metrics, transactions, activity reports per event.
+
+---
+
+## 📦 Tech Stack
+
+- **Frontend**: Unity (WebGL), React
+- **Blockchain**: Internet Computer Protocol (Motoko, dfx, canisters)
+- **Back-end**: Canister-based architecture
+- **Wallets**: Plug, Internet Identity (II), WalletConnect
+- **NFT Minting**: Smart contracts on ICP
+- **3D Design**: Blender, Figma
+- **Deployment**: ICP Mainnet (with working canisters)
+
+---
+
+## 📹 Demo
+
+🎥 Watch our live platform and experience it now:  
+[https://metabuildcity.com/new](https://metabuildcity.com/new)
+
+Demo Video (YouTube):  
+[https://youtu.be/ltpxv0ZPur8](https://youtu.be/ltpxv0ZPur8)
+
+---
+
+## 📹 Pitck Deck
+
+🎥 Watch our live platform and experience it now:  
+[https://metabuildcity.com/new](https://metabuildcity.com/new)
+
+---
+
+## 👥 Team
+
+### Rodrigo Requena – Project Lead & 3D Product Designer  
+Civil Constructor UC | Expert in Unity, XR & Metaverse Strategy | Speaker ETH Chile & Paris Blockchain Week Winner
+
+### Herbert Zapata – CTO & Blockchain Architect  
+Full-stack Dev | Specialist in Motoko, Rust & ICP Canisters | NFT Minting & Smart Contract Logic
+
+### Francisco Román – Unity Developer  
+WebGL Frontend | Unity C# Programmer | Avatar Interactions & Stand Rendering
+
+### Pablo [Apellido] – 3D & Visual Designer  
+Figma + Blender | Merch Design | Web UI for exhibitor tools and marketplace
+
+---
+
+## 🧪 How to Run Locally
 
 To learn more before you start working with `metabuildcity`, see the following documentation available online:
 
