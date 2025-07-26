@@ -10,25 +10,20 @@ import '../components/dashboard.scss';
 
 const mockNFTs = [
   {
-    title: "WORLD COMPUTER METAVERSE 2025",
-    subtitle: "Chile Fintech Forum 2025",
-    description: "Metaverso Chile Fintech Forum 2025",
-    image: "/assets/images/business-model-1.png",
-    button: "VER PRODUCTOS"
-  },
-  {
     title: "La Cumbre Digital 2025",
     subtitle: "La Cumbre Digital 2025",
     description: "Metaverso La Cumbre Digital 2025",
-    image: "/assets/images/business-model-2.png",
-    button: "VER PRODUCTOS"
+    image: "/assets/images/fintech.png",
+    button: "VER PRODUCTOS",
+    externalUrl: "https://www.spatial.io/s/Chile-Fintech-Forum-2025-6805e30ef734432bbfb0aa50?share=1958515338604272350"
   },
   {
     title: "CHILE FINTECH FORUM 2025",
     subtitle: "Chile Fintech Forum 2025",
     description: "Metaverso Chile Fintech Forum 2025",
-    image: "/assets/images/business-model-1.png",
-    button: "VER PRODUCTOS"
+    image: "/assets/images/lacumbre.png",
+    button: "VER PRODUCTOS",
+    externalUrl: "https://metabuildcity.com/#:~:text=FINTECH%20FORUM%202025-,INGRESAR,-DEPARTAMENTO%20DE%20CONSTRUCCI%C3%93N"
   }
 ];
 
@@ -36,6 +31,8 @@ const DashboardHome = () => {
   const [showForm, setShowForm] = useState(false);
   const handleMintClick = () => setShowForm(true);
   const handleFormClose = () => setShowForm(false);
+  
+  console.log('mockNFTs:', mockNFTs); // Debug
   return (
     <>
       <h1 className="dashboard-title">EVENTOS Y HUBS</h1>
@@ -55,7 +52,19 @@ const DashboardHome = () => {
               <div style={{fontWeight:900,fontSize:'1.1rem',color:'#fff',marginBottom:4}}>{nft.title}</div>
               <div style={{fontWeight:700,fontSize:'1rem',color:'#b8c5d6',marginBottom:4}}>{nft.subtitle}</div>
               <div style={{fontSize:'0.95rem',color:'#b8c5d6',marginBottom:12}}>{nft.description}</div>
-              <button className="btn btn-info w-100" style={{background:'#00d4ff',color:'#181c2f',fontWeight:700,borderRadius:20}}>{nft.button}</button>
+              {nft.externalUrl ? (
+                <a 
+                  href={nft.externalUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn btn-info w-100" 
+                  style={{background:'#00d4ff',color:'#181c2f',fontWeight:700,borderRadius:20,textDecoration:'none',display:'inline-block',textAlign:'center'}}
+                >
+                  {nft.button}
+                </a>
+              ) : (
+                <button className="btn btn-info w-100" style={{background:'#00d4ff',color:'#181c2f',fontWeight:700,borderRadius:20}}>{nft.button}</button>
+              )}
             </div>
           ))}
         </div>

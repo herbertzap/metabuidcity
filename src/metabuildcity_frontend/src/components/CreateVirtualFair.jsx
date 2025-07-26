@@ -277,45 +277,45 @@ Para ver tu NFT, puedes usar el Token ID en cualquier explorador de NFTs de ICP.
         <p className="success-message">¡Gracias! Tu NFT ha sido creado correctamente.</p>
       ) : (
         <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Fair name</label>
-              <input
-                type="text"
-                name="fairName"
-                value={formData.fairName}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label>Organizer name</label>
-              <input
-                type="text"
-                name="organizerName"
-                value={formData.organizerName}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="form-row">
-            <div className="form-group">
-              <label>Sector</label>
-              <select name="sector" value={formData.sector} onChange={handleChange}>
-                <option value="Fintech">Fintech</option>
-                <option value="Health">Health</option>
-                <option value="Education">Education</option>
-              </select>
-            </div>
+  <div className="form-group">
+    <label>Fair name</label>
+    <input
+      type="text"
+      name="fairName"
+      value={formData.fairName}
+      onChange={handleChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label>Organizer name</label>
+    <input
+      type="text"
+      name="organizerName"
+      value={formData.organizerName}
+      onChange={handleChange}
+      required
+    />
+  </div>
+  <div className="form-row">
+    <div className="form-group">
+      <label>Sector</label>
+      <select name="sector" value={formData.sector} onChange={handleChange}>
+        <option value="Fintech">Fintech</option>
+        <option value="Health">Health</option>
+        <option value="Education">Education</option>
+      </select>
+    </div>
 
-            <div className="form-group">
-              <label>Sub-sector</label>
-              <select name="subSector" value={formData.subSector} onChange={handleChange}>
-                <option value="Digital banking">Digital banking</option>
-                <option value="Insurance">Insurance</option>
-                <option value="Crypto">Crypto</option>
-              </select>
-            </div>
-          </div>
+    <div className="form-group">
+      <label>Sub-sector</label>
+      <select name="subSector" value={formData.subSector} onChange={handleChange}>
+        <option value="Digital banking">Digital banking</option>
+        <option value="Insurance">Insurance</option>
+        <option value="Crypto">Crypto</option>
+      </select>
+    </div>
+  </div>
             {/* Campo Wallet ID oculto - siempre usa el principal autenticado */}
   {/* <div className="form-group">
     <label>Wallet ID</label>
@@ -327,15 +327,15 @@ Para ver tu NFT, puedes usar el Token ID en cualquier explorador de NFTs de ICP.
       required
     />
   </div> */}
-          <div className="form-group upload-group">
-          <label htmlFor="media">Upload image or video</label>
-            <input
-              type="file"
-              name="media"
-              accept="image/*,video/*"
-              onChange={handleChange}
-            />
-          </div>
+  <div className="form-group upload-group">
+    <label htmlFor="media">Upload image or video</label>
+    <input
+      type="file"
+      name="media"
+      accept="image/*,video/*"
+      onChange={handleChange}
+    />
+  </div>
           <div style={{display: 'flex', gap: '1rem', marginTop: '1rem'}}>
             <button type="submit" className="mint-btn" disabled={loading} style={{flex: 1}}>
               {loading ? "Creando NFT..." : "Mint NFT"}
@@ -361,7 +361,7 @@ Para ver tu NFT, puedes usar el Token ID en cualquier explorador de NFTs de ICP.
               </button>
             )}
           </div>
-        </form>
+</form>
       )}
     </div>
   );

@@ -392,7 +392,7 @@ const DashboardHome = () => {
   return (
     <>
       <h1 className="dashboard-title">EVENTOS Y HUBS</h1>
-      <p className="dashboard-subtitle">Selecciona tu evento virtual</p>
+      <p className="dashboard-subtitle">Selecciona tu evento virtual (Actualizado)</p>
       
       {/* Botón de debug (temporal) */}
       <div style={{marginBottom: '1rem', textAlign: 'center'}}>
@@ -460,13 +460,56 @@ const DashboardHome = () => {
               </div>
             ))
           ) : (
-            <div style={{minWidth:280,maxWidth:320,border:'2px solid #666',borderRadius:20,padding:'1.5rem',background:'rgba(0,0,0,0.05)',display:'flex',flexDirection:'column',alignItems:'center'}}>
-              <div style={{color:'#888',textAlign:'center'}}>
-                <div style={{marginBottom:'1rem'}}>📭</div>
-                <div>No tienes NFTs aún</div>
-                <div style={{fontSize:'0.9rem',marginTop:'0.5rem'}}>¡Crea tu primera feria virtual!</div>
+            <>
+              {/* Ejemplos de NFTs cuando el usuario no tiene ninguno */}
+              <div className="nft-card" style={{minWidth:280,maxWidth:320,border:'2px solid #00d4ff',borderRadius:20,padding:'1.5rem',background:'rgba(0,0,0,0.10)',display:'flex',flexDirection:'column',alignItems:'center'}}>
+                <img src="/assets/images/business-model-1.png" alt="Business Model Canvas" style={{width:'100%',borderRadius:12,marginBottom:'1rem',objectFit:'cover',maxHeight:120}} />
+                <div style={{fontWeight:900,fontSize:'1.1rem',color:'#fff',marginBottom:4}}>Business Model Canvas</div>
+                <div style={{fontWeight:700,fontSize:'1rem',color:'#b8c5d6',marginBottom:4}}>Business Model Canvas</div>
+                <div style={{fontSize:'0.95rem',color:'#b8c5d6',marginBottom:12}}>Metaverso Business Model Canvas</div>
+                <button className="btn btn-info w-100" style={{background:'#00d4ff',color:'#181c2f',fontWeight:700,borderRadius:20}}>VER PRODUCTOS</button>
               </div>
-            </div>
+              
+              <div className="nft-card" style={{minWidth:280,maxWidth:320,border:'2px solid #00d4ff',borderRadius:20,padding:'1.5rem',background:'rgba(0,0,0,0.10)',display:'flex',flexDirection:'column',alignItems:'center'}}>
+                <img src="/assets/images/business-model-2.png" alt="Business Model Canvas" style={{width:'100%',borderRadius:12,marginBottom:'1rem',objectFit:'cover',maxHeight:120}} />
+                <div style={{fontWeight:900,fontSize:'1.1rem',color:'#fff',marginBottom:4}}>Business Model Canvas</div>
+                <div style={{fontWeight:700,fontSize:'1rem',color:'#b8c5d6',marginBottom:4}}>Business Model Canvas</div>
+                <div style={{fontSize:'0.95rem',color:'#b8c5d6',marginBottom:12}}>Metaverso Business Model Canvas</div>
+                <button className="btn btn-info w-100" style={{background:'#00d4ff',color:'#181c2f',fontWeight:700,borderRadius:20}}>VER PRODUCTOS</button>
+              </div>
+              
+              <div className="nft-card" style={{minWidth:280,maxWidth:320,border:'2px solid #00d4ff',borderRadius:20,padding:'1.5rem',background:'rgba(0,0,0,0.10)',display:'flex',flexDirection:'column',alignItems:'center'}}>
+                <img src="/assets/images/fintech.png" alt="La Cumbre Digital 2025" style={{width:'100%',borderRadius:12,marginBottom:'1rem',objectFit:'cover',maxHeight:120}} />
+                <div style={{fontWeight:900,fontSize:'1.1rem',color:'#fff',marginBottom:4}}>La Cumbre Digital 2025</div>
+                <div style={{fontWeight:700,fontSize:'1rem',color:'#b8c5d6',marginBottom:4}}>La Cumbre Digital 2025</div>
+                <div style={{fontSize:'0.95rem',color:'#b8c5d6',marginBottom:12}}>Metaverso La Cumbre Digital 2025</div>
+                <a 
+                  href="https://www.spatial.io/s/Chile-Fintech-Forum-2025-6805e30ef734432bbfb0aa50?share=1958515338604272350" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn btn-info w-100" 
+                  style={{background:'#00d4ff',color:'#181c2f',fontWeight:700,borderRadius:20,textDecoration:'none',display:'inline-block',textAlign:'center'}}
+                >
+                  VER PRODUCTOS
+                </a>
+              </div>
+              
+              <div className="nft-card" style={{minWidth:280,maxWidth:320,border:'2px solid #00d4ff',borderRadius:20,padding:'1.5rem',background:'rgba(0,0,0,0.10)',display:'flex',flexDirection:'column',alignItems:'center'}}>
+                <img src="/assets/images/lacumbre.png" alt="CHILE FINTECH FORUM 2025" style={{width:'100%',borderRadius:12,marginBottom:'1rem',objectFit:'cover',maxHeight:120}} />
+                <div style={{fontWeight:900,fontSize:'1.1rem',color:'#fff',marginBottom:4}}>CHILE FINTECH FORUM 2025</div>
+                <div style={{fontWeight:700,fontSize:'1rem',color:'#b8c5d6',marginBottom:4}}>Chile Fintech Forum 2025</div>
+                <div style={{fontSize:'0.95rem',color:'#b8c5d6',marginBottom:12}}>Metaverso Chile Fintech Forum 2025</div>
+                <a 
+                  href="https://metabuildcity.com/#:~:text=FINTECH%20FORUM%202025-,INGRESAR,-DEPARTAMENTO%20DE%20CONSTRUCCI%C3%93N" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn btn-info w-100" 
+                  style={{background:'#00d4ff',color:'#181c2f',fontWeight:700,borderRadius:20,textDecoration:'none',display:'inline-block',textAlign:'center'}}
+                >
+                  VER PRODUCTOS
+                </a>
+              </div>
+            </>
           )}
         </div>
       ) : (
