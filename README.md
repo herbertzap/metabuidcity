@@ -40,17 +40,17 @@ Metabuild HUB is the innovation HUB of the metaverse, where organizations and in
 ## 📹 Demo
 
 🎥 Watch our live platform and experience it now:  
-[https://metabuildcity.com/new](https://metabuildcity.com/new)
+[https://azhuu-hqaaa-aaaam-aeggq-cai.icp0.io/](https://azhuu-hqaaa-aaaam-aeggq-cai.icp0.io/)
 
 Demo Video (YouTube):  
-[https://youtu.be/ltpxv0ZPur8](https://youtu.be/ltpxv0ZPur8)
+[https://youtu.be/-BEWIxx8Gb0)](https://youtu.be/-BEWIxx8Gb0)
 
 ---
 
 ## 📹 Pitck Deck
 
 🎥 Watch our live platform and experience it now:  
-[https://metabuildcity.com/new](https://metabuildcity.com/new)
+[https://www.canva.com/design/DAGuABP-LvA/8NF-v0pQh_BXjwVTobjGOQ/edit?utm_content=DAGuABP-LvA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton](https://www.canva.com/design/DAGuABP-LvA/8NF-v0pQh_BXjwVTobjGOQ/edit?utm_content=DAGuABP-LvA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ---
 
@@ -65,7 +65,7 @@ Full-stack Dev | Specialist in Motoko, Rust & ICP Canisters | NFT Minting & Smar
 ### Francisco Román – Unity Developer  
 WebGL Frontend | Unity C# Programmer | Avatar Interactions & Stand Rendering
 
-### Pablo [Apellido] – 3D & Visual Designer  
+### Pablo Rodríguez – 3D & Visual Designer  
 Figma + Blender | Merch Design | Web UI for exhibitor tools and marketplace
 
 ---
